@@ -32,7 +32,7 @@ public class CartBean {
 		return productName;
 	}
 
-	public void setUserId(String userId) {
+	public void setProductName(String productName) {
 		this.productName = productName;
 	}
 
