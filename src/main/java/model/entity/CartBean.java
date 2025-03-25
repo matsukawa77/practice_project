@@ -1,8 +1,6 @@
-package java.model.entity;
+package model.entity;
 
-import java.io.Serializable;
-
-public class CartBean implements Serializable {
+public class CartBean {
 	private String userId;
 	private int productCode;
 	private String productName;
