@@ -1,9 +1,11 @@
+<%
+response.sendRedirect(request.getContextPath() + "/searchCategory"); // 商品一覧ページにリダイレクト
+%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="java.util.List,model.entity.ProductBean"%>
-<%
-    response.sendRedirect("searchCategory"); // 商品一覧ページにリダイレクト
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +32,7 @@
 				<img src="image/aomusi.png" alt="商品画像" class="product_img">
 			</div>
 			<div class="title_box">
-				<p class="product_name"><%= product.getProductName %></p>
+				<p class="product_name"><%= product.getProductName() %></p>
 				<p class="price">1,000円</p>
 			</div>
 			<div class="description_box">

@@ -13,7 +13,7 @@ import model.entity.ProductBean;
 public class ProductDAO {
 
 	//商品ページの一覧表示
-	public List<ProductBean> getAllProducts() throws SQLException {
+	public List<ProductBean> getAllProducts() throws SQLException, ClassNotFoundException {
 		List<ProductBean> productList = new ArrayList<ProductBean>();
 		try (Connection con = ConnectionManager.getConnection();
 				Statement stmt = con.createStatement();
@@ -52,7 +52,7 @@ public class ProductDAO {
 	}
 
 	//検索
-	public List<ProductBean> getSortProduct(String categoryName) throws SQLException {
+	public List<ProductBean> getSortProduct(String categoryName) throws SQLException, ClassNotFoundException {
 		List<ProductBean> productList = new ArrayList<ProductBean>();
 		String sql = """
 				SELECT
@@ -92,7 +92,7 @@ public class ProductDAO {
 	}
 
 	//在庫を減らす アップデート
-	public int decrementStock(String productName) throws SQLException {
+	public int decrementStock(String productName) throws SQLException, ClassNotFoundException {
 		int count = 0;
 		String sql = """
 				UPDATE

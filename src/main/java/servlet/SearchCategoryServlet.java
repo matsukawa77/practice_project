@@ -19,44 +19,47 @@ import model.entity.ProductBean;
 @WebServlet("/searchCategory")
 public class SearchCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SearchCategoryServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public SearchCategoryServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
+		response.getWriter().println("今ここ");
+		ProductDAO productdao = new ProductDAO();
+		List<ProductBean> product = null;
+		try {
+			System.out.println("今ここ２");
+			product = productdao.getAllProducts();
+			request.setAttribute("product", product);
 
-		 ProductDAO productdao = new ProductDAO();
-	        List<ProductBean> product;
-			try {
-				product = productdao.getAllProducts();
-				 request.setAttribute("product", product);
-				  // 商品一覧ページへフォワード
-			        request.getRequestDispatcher("index.jsp").forward(request, response);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-	       
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 
-	      
-	    }
-		
-	
+	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 //		response.setContentType("text/html; charset=UTF-8");
 //		response.setCharacterEncoding("UTF-8");
 //		request.setCharacterEncoding("UTF-8");
@@ -91,6 +94,6 @@ public class SearchCategoryServlet extends HttpServlet {
 //			e.printStackTrace();
 //		}
 //
-}
+	}
 
 }
