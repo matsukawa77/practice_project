@@ -3,6 +3,7 @@ package model.entity;
 import java.util.Date;
 
 public class UserBean {
+	private int memberNum;
 	private String userId;
 	private String password;
 	private String name;
@@ -10,12 +11,20 @@ public class UserBean {
 	private String postalCode;
 	private String adress;
 	private Date birthDay;
-	private String gender;
+	private int gender;
 	private String phoneNumber;
 	private String role;
 
 	public UserBean() {
 
+	}
+
+	public int getMemberNum() {
+		return memberNum;
+	}
+
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
 	}
 
 	public String getUserId() {
@@ -74,11 +83,11 @@ public class UserBean {
 		this.birthDay = birthDay;
 	}
 
-	public String getGender() {
+	public int getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 
