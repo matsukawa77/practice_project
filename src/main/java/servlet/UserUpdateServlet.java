@@ -1,12 +1,15 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.UserDAO;
 import model.entity.UserBean;
@@ -31,24 +34,25 @@ public class UserUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-
+		HttpSession session = request.getSession();
+		
+		int memberNum = (int) session.getAttribute("memberNum");
         String userId = request.getParameter("userId");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
         String nameKana = request.getParameter("nameKana");
         String postalCode = request.getParameter("postalCode");
         String address = request.getParameter("address");
-        String birthDay = request.getParameter("birthDay");
-        String gender = request.getParameter("gender");
+        Date birthDay = Date.valueOf(request.getParameter("birthDay"));
+		int gender =  Integer.parseInt(request.getParameter("gender"));
         String phoneNumber = request.getParameter("phoneNumber");
         String role = request.getParameter("role");
 
@@ -65,8 +69,15 @@ public class UserUpdateServlet extends HttpServlet {
         user.setRole(role);
 
         UserDAO userDao = new UserDAO();
-        userDao.updateUser(user);
+        try {
+			userDao.updateUser(user);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 
         response.sendRedirect("mypage.jsp");
     }
 }
+
+

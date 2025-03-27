@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +33,6 @@ public class UserRegisterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		// ユーザー登録画面を表示する処理
 		request.getRequestDispatcher("registerUser.jsp").forward(request, response);
 	}
@@ -41,7 +42,6 @@ public class UserRegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 
 		String userId = request.getParameter("userId");
@@ -50,12 +50,13 @@ public class UserRegisterServlet extends HttpServlet {
 		String nameKana = request.getParameter("nameKana");
 		String postalCode = request.getParameter("postalCode");
 		String address = request.getParameter("address");
-		String birthDay = request.getParameter("birthDay");
-		String gender = request.getParameter("gender");
+		Date birthDay = Date.valueOf(request.getParameter("birthDay"));
+		int gender =  Integer.parseInt(request.getParameter("gender"));
 		String phoneNumber = request.getParameter("phoneNumber");
 		String role = request.getParameter("role");
 
 		UserBean user = new UserBean();
+
 		user.setUserId(userId);
 		user.setPassword(password);
 		user.setName(name);
@@ -68,13 +69,25 @@ public class UserRegisterServlet extends HttpServlet {
 		user.setRole(role);
 
 		UserDAO userDao = new UserDAO();
-		int result = userDao.registerUser(user);
+
+		int result = 0;
+		try {
+			result = userDao.registerUser(user);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 
 		if (result > 0) {
+
 			response.sendRedirect("complete.jsp");
+
 		} else {
+
 			response.sendRedirect("error.jsp");
+
 		}
+
 	}
 
 }
