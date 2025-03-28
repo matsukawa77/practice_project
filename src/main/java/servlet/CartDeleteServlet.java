@@ -60,13 +60,13 @@ public class CartDeleteServlet extends HttpServlet {
 			System.out.println("カートの商品が" + result + "件削除されました。");
 
 			request.setAttribute("msg", "削除");
-			path = "/cart";
+			path = "cart";
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "カートの商品の削除に失敗しました。");
 			path = "error.jsp";
 		}
-		request.getRequestDispatcher(path).forward(request, response);
+		response.sendRedirect(path);
 	}
 
 }

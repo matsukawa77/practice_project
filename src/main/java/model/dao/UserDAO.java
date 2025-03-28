@@ -33,6 +33,7 @@ public class UserDAO {
 			// userIdが一致した場合
 			if (res.next()) {
 				// return用変数にDBから取得した値をセット
+				user.setMemberNum(res.getInt("member_num"));
 				user.setUserId(res.getString("user_id"));
 				user.setPassword(res.getString("password"));
 				user.setName(res.getString("name"));

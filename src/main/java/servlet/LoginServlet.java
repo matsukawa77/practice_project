@@ -48,8 +48,6 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("password");
 		// インスタンス化
 		UserDAO dao = new UserDAO();
-		// 遷移先パス初期化
-		String path = "";
 
 		// user情報の取得、ログイン認証
 		try {
@@ -60,18 +58,17 @@ public class LoginServlet extends HttpServlet {
 				String role = userInfo.getRole();
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", id);
-				session.setAttribute("menberNum", memberNum);
+				session.setAttribute("memberNum", memberNum);
 				session.setAttribute("role", role);
-				path = "index.jsp";
+				response.sendRedirect("searchCategory");
 			} else {
 				request.setAttribute("msg", "ユーザーIDまたはパスワードが違います");
-				path = "login.jsp";
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 			request.setAttribute("msg", "ログイン時にエラーが発生しました");
-			path = "login.jsp";
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher(path).forward(request, response);
 	}
 }

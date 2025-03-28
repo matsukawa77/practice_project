@@ -14,7 +14,7 @@
 	<div class="form__container">
 	<form action="login" method="post">
 		<label>ユーザーID：</label>
-		<input id="login__id" type="text" name="id" required><br>
+		<input id="login__id" type="text" name="userId" required><br>
 
 		<label>パスワード：</label>
 		<input id="login__pass" type="password" name="password" required><br><br>

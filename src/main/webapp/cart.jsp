@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>カート内商品</title>
 <link rel="stylesheet" href="css/cart.css">
+<%@ include file="header.jsp"%>
 <%
 List<CartBean> cartItemList = (List<CartBean>) request.getAttribute("cartItemList");
 if (cartItemList != null) {
@@ -14,7 +15,6 @@ if (cartItemList != null) {
 %>
 </head>
 <body>
-<%@ include file="header.jsp"%>
   <main>
     <div class="main__ttl">
       <h1>カート内商品</h1>
@@ -35,11 +35,11 @@ if (cartItemList != null) {
 	      </table>
 	
 	      <div class="button__container">
-		      <from class="upd__button" action="editCart" method="post">
+		      <form class="upd__button" action="editCart" method="post">
 		        <input class="input__quantity" type="text" name="quantity" value="<%=cartItem.getQuantity()%>">
 		        <input type="hidden" name="productCode" value="<%=cartItem.getProductCode()%>">
 		        <input type="submit" value="変更">
-		      </from>
+		      </form>
 		
 		      <form class="del__button" action="deleteCart" method="post">
 		        <input type="hidden" name="productCode" value="<%=cartItem.getProductCode()%>">
@@ -53,7 +53,7 @@ if (cartItemList != null) {
     }
 }
   %>
-  <form class="purchase__button" action="confirmPurchase" method="get">
+  <form class="purchase__button" action="PurchaseConfirm" method="get">
     <input type="submit" value="購入画面へ">
   </form>
 
