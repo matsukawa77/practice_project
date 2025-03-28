@@ -2,15 +2,28 @@
 
 
 body{
-
 	text-align: center;
-	
 	
 }
 
 .btn {
-    width: 200px;
+
+    width: 250px;
     padding: 15px;
     border-radius: 30px;
-    
+    background-color: #fffa3c;
+}
+
+.btn:hover {
+	background-color: 	#ffb760;
+}
+
+.container{
+	display: flexbox;
+	width: fit-content;
+	text-align: right;
+	line-height: 50px;
+	align-items: center;
+	justify-content: center;
+	margin:auto;
 }
