@@ -9,7 +9,7 @@ public class UserBean {
 	private String name;
 	private String nameKana;
 	private String postalCode;
-	private String adress;
+	private String address;
 	private Date birthDay;
 	private int gender;
 	private String phoneNumber;
@@ -67,12 +67,12 @@ public class UserBean {
 		this.postalCode = postalCode;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Date getBirthDay() {

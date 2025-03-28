@@ -11,14 +11,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import model.entity.UserBean;
 
 public class UserDAO {
-	public UserBean getUser(String userId) throws SQLException, ClassCastException {
+	public UserBean getUser(String userId) throws SQLException, ClassNotFoundException {
 		// return用変数
 		UserBean user = new UserBean();
 		// SQL文
 		String sql = """
 				SELECT
 					mumber_num, user_id, password, name, name_kana, postal_code,
-					adress, birth_day, gender, phone_number, role
+					address, birth_day, gender, phone_number, role
 				FROM
 					m_user
 				WHERE
@@ -38,7 +38,7 @@ public class UserDAO {
 				user.setName(res.getString("name"));
 				user.setNameKana(res.getString("name_kana"));
 				user.setPostalCode(res.getString("postal_code"));
-				user.setAdress(res.getString("adress"));
+				user.setAddress(res.getString("address"));
 				user.setBirthDay(res.getDate("birth_day"));
 				user.setGender(res.getInt("gender"));
 				user.setPhoneNumber(res.getString("phone_number"));
@@ -70,7 +70,7 @@ public class UserDAO {
 		String sql = """
 				INSERT INTO m_user
 					(user_id, password, name, name_kana, postal_code,
-					adress, birth_day, gender, phone_number)
+					address, birth_day, gender, phone_number)
 				VALUES
 					(?, ?, ?, ?, ?, ?, ?, ?, ?);
 				""";
@@ -82,7 +82,7 @@ public class UserDAO {
 			pstmt.setString(3, user.getName());
 			pstmt.setString(4, user.getNameKana());
 			pstmt.setString(5, user.getPostalCode());
-			pstmt.setString(6, user.getAdress());
+			pstmt.setString(6, user.getAddress());
 			pstmt.setDate(7, (Date) user.getBirthDay());
 			pstmt.setInt(8, user.getGender());
 			pstmt.setString(9, user.getPhoneNumber());
@@ -118,7 +118,7 @@ public class UserDAO {
 			pstmt.setString(3, user.getName());
 			pstmt.setString(4, user.getNameKana());
 			pstmt.setString(5, user.getPostalCode());
-			pstmt.setString(6, user.getAdress());
+			pstmt.setString(6, user.getAddress());
 			pstmt.setDate(7, (Date) user.getBirthDay());
 			pstmt.setInt(8, user.getGender());
 			pstmt.setString(9, user.getPhoneNumber());
