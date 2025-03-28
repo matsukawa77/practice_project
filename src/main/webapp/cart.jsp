@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>カート内商品</title>
+<link rel="stylesheet" href="css/cart.css">
 <%
 List<CartBean> cartItemList = (List<CartBean>) request.getAttribute("cartItemList");
 if (cartItemList != null) {
