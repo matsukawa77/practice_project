@@ -11,7 +11,7 @@ import model.entity.CategoryBean;
 
 public class CategoryDAO {
 
-	public List<CategoryBean> getAllCategories() throws SQLException {
+	public List<CategoryBean> getAllCategories() throws SQLException, ClassNotFoundException {
 		List<CategoryBean> categoryList = new ArrayList<>();
 		String sql = "SELECT category_id, category_name FROM m_category";
 		try (Connection connection = ConnectionManager.getConnection();
@@ -23,6 +23,9 @@ public class CategoryDAO {
 				category.setCategoryName(resultSet.getString("category_name"));
 				categoryList.add(category);
 			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
 		}
 		return categoryList;
 	}
