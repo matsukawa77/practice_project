@@ -66,7 +66,7 @@ public class CartEditServlet extends HttpServlet {
 			path = "cart";
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "カートの商品の削除に失敗しました。");
+			request.setAttribute("errorMessage", "カートの商品の変更に失敗しました。");
 			path = "error.jsp";
 		}
 		response.sendRedirect(path);
