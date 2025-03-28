@@ -58,8 +58,6 @@ public class CartDeleteServlet extends HttpServlet {
 			// カート商品削除
 			int result = dao.deleteCartItem(userId, productCode);
 			System.out.println("カートの商品が" + result + "件削除されました。");
-
-			request.setAttribute("msg", "削除");
 			path = "cart";
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();

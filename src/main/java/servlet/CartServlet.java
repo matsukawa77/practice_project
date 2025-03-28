@@ -77,7 +77,7 @@ public class CartServlet extends HttpServlet {
 			response.sendRedirect("searchCategory");
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-			request.setAttribute("msg", "商品の追加に失敗しました。");
+			request.setAttribute("errorMassage", "商品の追加に失敗しました。");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}

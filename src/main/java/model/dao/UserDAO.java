@@ -17,7 +17,7 @@ public class UserDAO {
 		// SQL文
 		String sql = """
 				SELECT
-					mumber_num, user_id, password, name, name_kana, postal_code,
+					member_num, user_id, password, name, name_kana, postal_code,
 					address, birth_day, gender, phone_number, role
 				FROM
 					m_user

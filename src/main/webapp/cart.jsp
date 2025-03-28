@@ -8,13 +8,15 @@
 <title>カート内商品</title>
 <link rel="stylesheet" href="css/cart.css">
 <%@ include file="header.jsp"%>
+</head>
+<body>
 <%
+int totalPrice = 0;
 List<CartBean> cartItemList = (List<CartBean>) request.getAttribute("cartItemList");
 if (cartItemList != null) {
   for (CartBean cartItem : cartItemList) {
+	  totalPrice += cartItem.getSumPrice();
 %>
-</head>
-<body>
   <main>
     <div class="main__ttl">
       <h1>カート内商品</h1>
@@ -29,8 +31,8 @@ if (cartItemList != null) {
 		<div class="sub__container">
 		  <table>
 		      <tr class="table__item">
-		        <td><%=cartItem.getProductName()%></td>
-		        <td><%=cartItem.getSumPrice()%></td>
+		        <td class="productName__txt"><%=cartItem.getProductName()%></td>
+		        <td class="price__txt">￥<%=cartItem.getPrice()%></td>
 		      </tr>
 	      </table>
 	
@@ -48,11 +50,13 @@ if (cartItemList != null) {
 	      </div>
 	    </div>
 	</div>
-  </div>
   <%
     }
 }
   %>
+  <p class="sumPrice__txt">合計（税込）：￥<%=totalPrice %></p>
+  </div>
+  
   <form class="purchase__button" action="PurchaseConfirm" method="get">
     <input type="submit" value="購入画面へ">
   </form>
