@@ -57,8 +57,8 @@ public class CartEditServlet extends HttpServlet {
 
 			CartBean updateItem = new CartBean();
 			updateItem.setUserId(userId);
-			updateItem.setUserId(productCode);
-			updateItem.setUserId(quantity);
+			updateItem.setProductCode(productCode);
+			updateItem.setQuantity(quantity);
 
 			CartDAO cartDAO = new CartDAO();
 			int result = cartDAO.updateCartItem(updateItem);
