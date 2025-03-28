@@ -30,7 +30,7 @@ request.setAttribute("errorMessage", "エラーメッセージ内容");のやつ
 	}
 	%>
 
-<a href="index.jsp">商品一覧画面へ</a>
+<a href="searchCategory.jsp">商品一覧画面へ</a>
 
 </body>
 </html>
