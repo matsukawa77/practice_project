@@ -78,7 +78,7 @@ public class CartServlet extends HttpServlet {
 			CartDAO cartDAO = new CartDAO();
 			int result = cartDAO.addCartItem(userId, productCode);
 			System.out.println("商品が" + result + "件追加されました。");
-			path = "index.jsp";
+			path = "/searchCategory";
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 			request.setAttribute("msg", "商品の追加に失敗しました。");

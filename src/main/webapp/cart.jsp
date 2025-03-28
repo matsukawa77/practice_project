@@ -13,6 +13,7 @@ if (cartItemList != null) {
 %>
 </head>
 <body>
+<%@ include file="header.jsp"%>
   <main>
     <div class="main__ttl">
       <h1>カート内商品</h1>
@@ -22,31 +23,36 @@ if (cartItemList != null) {
 
     <div class="main__container">
 
-      <img src="<%=cartItem.getProductImage()%>">
+		<img class="product__img" src="<%=cartItem.getProductImage()%>">
 
-      <tr class="table__item">
-        <td><%=cartItem.getProductName()%></td>
-        <td><%=cartItem.getSumPrice()%></td>
-      </tr>
-
-      <from class="detail" action="editCart" method="post">
-        <input type="text" name="quantity" value="<%=cartItem.getQuantity()%>">
-        <input type="hidden" name="productCode" value="<%=cartItem.getProductCode()%>">
-        <input type="submit" value="変更">
-      </from>
-
-      <form class="" action="deleteCart" method="post">
-        <input type="hidden" name="productCode" value="<%=cartItem.getProductCode()%>">
-        <input type="submit" value="削除">
-      </form>
-    </div>
-
+		<div class="sub__container">
+		  <table>
+		      <tr class="table__item">
+		        <td><%=cartItem.getProductName()%></td>
+		        <td><%=cartItem.getSumPrice()%></td>
+		      </tr>
+	      </table>
+	
+	      <div class="button__container">
+		      <from class="upd__button" action="editCart" method="post">
+		        <input class="input__quantity" type="text" name="quantity" value="<%=cartItem.getQuantity()%>">
+		        <input type="hidden" name="productCode" value="<%=cartItem.getProductCode()%>">
+		        <input type="submit" value="変更">
+		      </from>
+		
+		      <form class="del__button" action="deleteCart" method="post">
+		        <input type="hidden" name="productCode" value="<%=cartItem.getProductCode()%>">
+		        <input type="submit" value="削除">
+		      </form>
+	      </div>
+	    </div>
+	</div>
   </div>
   <%
     }
 }
   %>
-  <form action="confirmPurchase" method="get">
+  <form class="purchase__button" action="confirmPurchase" method="get">
     <input type="submit" value="購入画面へ">
   </form>
 

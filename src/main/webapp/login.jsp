@@ -8,6 +8,7 @@
 <title>ログイン画面</title>
 </head>
 <body>
+<%@ include file="header.jsp"%>
 <h1>ログイン画面</h1>
 	<div class="form__container">
 	<form action="login" method="post">
