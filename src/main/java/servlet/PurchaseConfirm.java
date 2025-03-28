@@ -52,7 +52,6 @@ public class PurchaseConfirm extends HttpServlet {
             CartDAO cartDAO = new CartDAO();
             List<CartBean> cartList = cartDAO.getAllCartItem();
             request.setAttribute("cartList", cartList);
-
             request.getRequestDispatcher("confirmPurchase.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("errorMessage", "購入エラー(GET)");
@@ -113,8 +112,7 @@ public class PurchaseConfirm extends HttpServlet {
             user.setName(userName);
             user.setNameKana(userNameKana);
             user.setPostalCode(postalCode);
-            // 必要なら、ここを setAddress(address) に変更（UserBean でメソッド名が統一されていれば）
-            user.setAdress(address);
+            user.setAddress(address);
 
             UserDAO userDAO = new UserDAO();
             userDAO.updateUser(user);
