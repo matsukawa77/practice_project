@@ -4,14 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.entity.CartBean;
 
 public class CartDAO {
-	public List<CartBean> getAllCartItem() throws SQLException, ClassNotFoundException {
+	public List<CartBean> getAllCartItem(String userId) throws SQLException, ClassNotFoundException {
 		// return用変数
 		List<CartBean> cartItemList = new ArrayList<CartBean>();
 		// SQL
@@ -26,18 +25,21 @@ public class CartDAO {
 				FROM m_cart as t1
 					JOIN m_product as t2
 					ON t1.product_code = t2.product_code
+				WHERE
+					t1.user_id = ?
 				""";
 		// データベースへの接続を取得、Statementの取得
 		try (Connection con = ConnectionManager.getConnection();
-				Statement stmt = con.createStatement();
-				ResultSet res = stmt.executeQuery(sql)) {
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			// responseをsetterでcartItemListへ格納
+				pstmt.setString(1, userId);
+				ResultSet res = pstmt.executeQuery();
 			while (res.next()) {
 				CartBean cartItem = new CartBean();
 				cartItem.setUserId(res.getString("user_id"));
 				cartItem.setProductCode(res.getInt("product_code"));
 				cartItem.setProductName(res.getString("product_name"));
-				cartItem.setProductImg(res.getString("product_image"));
+				cartItem.setProductImage(res.getString("product_image"));
 				cartItem.setQuantity(res.getInt("quantity"));
 				cartItem.setPrice(res.getInt("price"));
 				cartItem.setSumPrice(res.getInt("quantity") * res.getInt("price"));
@@ -54,7 +56,7 @@ public class CartDAO {
 		int result = 0;
 		// SQL
 		String selectSql = "SELECT * FROM m_cart WHERE user_id = ? AND product_code = ?";
-		try (Connection con = ConnectionManager.getconnection();
+		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(selectSql)) {
 			pstmt.setString(1, userId);
 			pstmt.setInt(2, productCode);

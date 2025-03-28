@@ -63,13 +63,13 @@ public class CartEditServlet extends HttpServlet {
 			CartDAO cartDAO = new CartDAO();
 			int result = cartDAO.updateCartItem(updateItem);
 			System.out.println("カート情報が" + result + "件アップデートされました。");
-			path = "/cart";
+			path = "cart";
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "カートの商品の削除に失敗しました。");
 			path = "error.jsp";
 		}
-		request.getRequestDispatcher(path).forward(request, response);
+		response.sendRedirect(path);
 	}
 
 }
