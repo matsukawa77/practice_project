@@ -57,16 +57,18 @@ public class LoginServlet extends HttpServlet {
 			UserBean userInfo = dao.getUser(id);
 			if (dao.loginAuth(userInfo, pass)) {
 				// userId, role, auth情報をsessionに格納
+				int memberNum = userInfo.getMemberNum();
 				String role = userInfo.getRole();
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", id);
+				session.setAttribute("menberNum", memberNum);
 				session.setAttribute("role", role);
 				path = "index.jsp";
 			} else {
 				request.setAttribute("msg", "ユーザーIDまたはパスワードが違います");
 				path = "login.jsp";
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 			request.setAttribute("msg", "ログイン時にエラーが発生しました");
 			path = "login.jsp";

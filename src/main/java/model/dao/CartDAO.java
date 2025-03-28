@@ -20,6 +20,7 @@ public class CartDAO {
 					t1.user_id,
 					t1.product_code,
 					t2.product_name,
+					t2.product_image,
 					t1.quantity,
 					t2.price
 				FROM m_cart as t1
@@ -36,6 +37,7 @@ public class CartDAO {
 				cartItem.setUserId(res.getString("user_id"));
 				cartItem.setProductCode(res.getInt("product_code"));
 				cartItem.setProductName(res.getString("product_name"));
+				cartItem.setProductImg(res.getString("product_image"));
 				cartItem.setQuantity(res.getInt("quantity"));
 				cartItem.setPrice(res.getInt("price"));
 				cartItem.setSumPrice(res.getInt("quantity") * res.getInt("price"));
@@ -100,7 +102,7 @@ public class CartDAO {
 		return result;
 	}
 
-	public int deleteCartItem(String userId, int productCode) {
+	public int deleteCartItem(String userId, int productCode) throws SQLException, ClassNotFoundException {
 		int result = 0;
 		// SQL
 		String sql = "DELETE FROM m_cart WHERE user_id = ? AND product_code = ?";
