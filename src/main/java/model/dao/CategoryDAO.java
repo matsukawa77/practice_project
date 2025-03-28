@@ -10,16 +10,12 @@ import java.util.List;
 import model.entity.CategoryBean;
 
 public class CategoryDAO {
-	private Connection connection;
-
-	public CategoryDAO(Connection connection) {
-		this.connection = connection;
-	}
 
 	public List<CategoryBean> getAllCategories() throws SQLException {
 		List<CategoryBean> categoryList = new ArrayList<>();
 		String sql = "SELECT category_id, category_name FROM m_category";
-		try (PreparedStatement statement = connection.prepareStatement(sql);
+		try (Connection connection = ConnectionManager.getConnection();
+				PreparedStatement statement = connection.prepareStatement(sql);
 				ResultSet resultSet = statement.executeQuery()) {
 			while (resultSet.next()) {
 				CategoryBean category = new CategoryBean();
