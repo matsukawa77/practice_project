@@ -19,10 +19,10 @@ import model.entity.UserBean;
  * Servlet implementation class PurchaseConfirm
  */
 @WebServlet("/PurchaseConfirm")
-public class PurchaseConfirm extends HttpServlet {
+public class PurchaseConfirmServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public PurchaseConfirm() {
+    public PurchaseConfirmServlet() {
         super();
     }
 

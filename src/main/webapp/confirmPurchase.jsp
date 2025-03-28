@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- CSSファイルはこの辺に入れる
-<link rel="stylesheet" href="ファイルの名前.css">
- -->
+<link rel="styleshet" herf="css/confirmPurchase.css">
 </head>
 <body>
 
@@ -42,19 +40,14 @@
 		
 		<label for="address">住所：</label>
 		<input type="text" id="address" name="address" value="<%=user.getAddress()%>" required>
-	
-
+		
 
 <h2>お支払方法</h2>
-
-<br>
 
 	<input type="radio" id="daibiki" name="payment" value="daibiki" checked />
 	<label for="daibiki">代引き(現金)</label>
 
 <h2>到着予定</h2>
-
-<br>
 
 	<p>3営業日以内に出荷</p>
 

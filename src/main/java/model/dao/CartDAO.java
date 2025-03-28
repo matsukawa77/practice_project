@@ -52,7 +52,7 @@ public class CartDAO {
 		int result = 0;
 		// SQL
 		String selectSql = "SELECT * FROM m_cart WHERE user_id = ? AND product_code = ?";
-		try (Connection con = ConnectionManager.getconnection();
+		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(selectSql)) {
 			pstmt.setString(1, userId);
 			pstmt.setInt(2, productCode);
@@ -100,7 +100,7 @@ public class CartDAO {
 		return result;
 	}
 
-	public int deleteCartItem(String userId, int productCode) {
+	public int deleteCartItem(String userId, int productCode) throws ClassNotFoundException {
 		int result = 0;
 		// SQL
 		String sql = "DELETE FROM m_cart WHERE user_id = ? AND product_code = ?";
