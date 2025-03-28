@@ -22,8 +22,9 @@ body{
 	display: flexbox;
 	width: fit-content;
 	text-align: right;
-	line-height: 50px;
+	line-height: 30px;
 	align-items: center;
 	justify-content: center;
 	margin:auto;
 }
+
