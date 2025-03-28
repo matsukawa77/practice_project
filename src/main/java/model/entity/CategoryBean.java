@@ -1,6 +1,6 @@
 package model.entity;
 
-public class CartegoryBean {
+public class CategoryBean {
 
 	private int categoryId;
 	private String categoryName;
