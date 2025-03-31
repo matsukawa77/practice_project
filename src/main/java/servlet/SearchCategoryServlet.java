@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.dao.CategoryDAO;
 import model.dao.ProductDAO;
@@ -50,15 +49,15 @@ public class SearchCategoryServlet extends HttpServlet {
 		List<CategoryBean> category = null;
 
 		try {
-			String Session = "access";
-			HttpSession session = request.getSession(true);
-			session.setAttribute("Session", Session);
+//			String Session = "access";
+//			HttpSession session = request.getSession(true);
+//			session.setAttribute("Session", Session);
 			product = productdao.getAllProducts();
 			category = categorydao.getAllCategories();
 			request.setAttribute("product", product);
 			request.setAttribute("category", category);
-
 			request.getRequestDispatcher("index.jsp").forward(request, response);
+
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -89,7 +88,7 @@ public class SearchCategoryServlet extends HttpServlet {
 			request.setAttribute("category", category);
 
 			request.setAttribute("product", productList);
-			request.getSession().setAttribute("selectedCategoryName", search);
+			request.setAttribute("selectedCategoryName", search);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
