@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>新規会員登録</title>
 
-<link rel="styleshet" href="css/mypage_style.css">
+<link rel="styleshet" herf="css/mypage_style.css">
 
 <script src="js/script.js"></script>
 </head>
@@ -20,7 +20,7 @@
 			<h1>新規会員登録</h1>
 		</div>
 
-		<form action="registerUser" method="post">
+		<form action="updateUser" method="post">
 			<div class="form-row">
 				<label for="name">お名前</label> 
 				 <input type="text" name="name" required>
@@ -52,7 +52,7 @@
 	        
 	        <div class="form-row postal-code-group">
 		        <label for="postalCode">郵便番号：</label>
-		         <input type="text" id="postalCode" name="postalCode" pattern="\d{3}-?\d{4}">
+		         <input type="text" id="postalCode" name="postalCode" pattern="\\d{3}-?\\d{4}">
 		          <button type="button" class="search-button" onclick="searchPostalCode()">検索</button>
 	        </div>
 	
@@ -63,12 +63,12 @@
 	        
 	        <div class="form-row">
 		        <label for="phoneNumber">電話番号：</label>
-		         <input type="text" id="phoneNumber" name="phoneNumber" required pattern="\d{2,4}-?\d{2,4}-?\d{3,4}">
+		         <input type="text" id="phoneNumber" name="phoneNumber" required pattern="\\d{2,4}-?\\d{2,4}-?\\d{3,4}">
 	        </div>
 	
 	        <div class="form-row">
 		         <label for="email">メールアドレス：</label>
-		          <input type="email" id="email" name="userId" required placeholder="example@example.com">
+		          <input type="email" id="email" name="email" required placeholder="example@example.com">
 	        </div>
 	        
 	        <div class="form-row">
