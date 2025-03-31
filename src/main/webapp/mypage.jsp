@@ -11,7 +11,7 @@ UserBean user = (UserBean) request.getAttribute("user");
 <meta charset="UTF-8">
 <title>マイページ</title>
 
-<link rel="styleshet" href="css/mypage_style.css">
+<link rel="stylesheet" href="css/mypage_style.css">
 
 <script src="js/script.js"></script>
 </head>
