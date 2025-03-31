@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>エラー画面</title>
-<link rel="stylesheet" type="text/css" href="css/error_complete.css">
+<link rel="stylesheet" type="text/css" href="css/error.css">
 </head>
 <body>
 
@@ -27,11 +27,9 @@ request.setAttribute("errorMessage", "エラーメッセージ内容");のやつ
 	}
 	%>
 
-<br>
-
 <!-- 一旦リンク先を商品一覧からサーチカテゴリに変更 -->
 
-<a href="searchCategory" class="btn">商品一覧画面へ</a>
+<a href="searchCategory.jsp">商品一覧画面へ</a>
 
 </body>
 </html>

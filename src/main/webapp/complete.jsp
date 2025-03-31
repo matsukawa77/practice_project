@@ -4,8 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>購入完了</title>
-<link rel="stylesheet" type="text/css" href="css/error_complete.css">
+<title>Insert title here</title>
+<!-- CSSファイルはこの辺に入れる
+<link rel="stylesheet" href="ファイルの名前.css">
+-->
 </head>
 <body>
 
@@ -24,7 +26,8 @@
 
 <br>
 
-<a href="searchCategory" class="btn">商品一覧画面へ</a>
+<a href="index.jsp">商品一覧画面へ</a>
+
 
 </body>
 </html>
