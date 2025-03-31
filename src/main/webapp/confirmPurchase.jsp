@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="styleshet" herf="css/confirmPurchase.css">
+<link rel="stylesheet" herf="css/confirmPurchase.css">
 </head>
 <body>
 
@@ -15,8 +15,8 @@
 
 <h1>購入者情報確認</h1>
 
-	<%=
-	UserBean user= (UserBean)request.getAttribute("user")
+	<%
+	UserBean user= (UserBean)request.getAttribute("user");
 	%>
 
 <!-- カートからこのページに遷移
