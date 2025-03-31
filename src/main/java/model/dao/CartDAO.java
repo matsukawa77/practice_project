@@ -51,32 +51,33 @@ public class CartDAO {
 		return cartItemList;
 	}
 
-	public int addCartItem(String userId, int productCode) throws SQLException, ClassNotFoundException {
+	public int addCartItem(CartBean cart) throws SQLException, ClassNotFoundException {
 		// return用変数
 		int result = 0;
 		// SQL
 		String selectSql = "SELECT * FROM m_cart WHERE user_id = ? AND product_code = ?";
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(selectSql)) {
-			pstmt.setString(1, userId);
-			pstmt.setInt(2, productCode);
+			pstmt.setString(1, cart.getUserId());
+			pstmt.setInt(2, cart.getProductCode());
 			try (ResultSet res = pstmt.executeQuery()) {
 				if (res.next()) {
 					// 商品が既にカートに存在する場合、quantityを1増加
 					int currentQuantity = res.getInt("quantity");
 					String updateSql = "UPDATE m_cart SET quantity = ? WHERE user_id = ? AND product_code = ?";
 					try (PreparedStatement updateRes = con.prepareStatement(updateSql)) {
-						updateRes.setInt(1, currentQuantity + 1);
-						updateRes.setString(2, userId);
-						updateRes.setInt(3, productCode);
+						updateRes.setInt(1, currentQuantity + cart.getQuantity());
+						updateRes.setString(2, cart.getUserId());
+						updateRes.setInt(3, cart.getProductCode());
 						result = updateRes.executeUpdate();
 					}
 				} else {
 					// 商品がカートに入っていない場合、レコードを新規追加
-					String insertSql = "INSERT INTO m_cart (user_id, product_code, quantity) VALUES (?, ?, 1)";
+					String insertSql = "INSERT INTO m_cart (user_id, product_code, quantity) VALUES (?, ?, ?)";
 					try (PreparedStatement insertRes = con.prepareStatement(insertSql)) {
-						insertRes.setString(1, userId);
-						insertRes.setInt(2, productCode);
+						insertRes.setString(1, cart.getUserId());
+						insertRes.setInt(2, cart.getProductCode());
+						insertRes.setInt(3, cart.getQuantity());
 						result = insertRes.executeUpdate();
 					}
 				}

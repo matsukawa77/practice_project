@@ -10,6 +10,11 @@
 <%@ include file="header.jsp"%>
 </head>
 <body>
+
+  <main>
+    <div class="main__ttl">
+      <h1>カート内商品</h1>
+    </div>
 <%
 int totalPrice = 0;
 List<CartBean> cartItemList = (List<CartBean>) request.getAttribute("cartItemList");
@@ -17,22 +22,20 @@ if (cartItemList != null) {
   for (CartBean cartItem : cartItemList) {
 	  totalPrice += cartItem.getSumPrice();
 %>
-  <main>
-    <div class="main__ttl">
-      <h1>カート内商品</h1>
-    </div>
 
   <div class="main__wrapper">
 
     <div class="main__container">
-
-		<img class="product__img" src="<%=cartItem.getProductImage()%>">
-
+		
+		<div class=product__img__box>
+			<img class="product__img" src="<%=cartItem.getProductImage()%>">
+		</div>
+		
 		<div class="sub__container">
 		  <table>
 		      <tr class="table__item">
 		        <td class="productName__txt"><%=cartItem.getProductName()%></td>
-		        <td class="price__txt">￥<%=cartItem.getPrice()%></td>
+		        <td class="price__txt">￥<%=cartItem.getSumPrice()%></td>
 		      </tr>
 	      </table>
 	

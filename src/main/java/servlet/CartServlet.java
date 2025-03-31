@@ -69,10 +69,15 @@ public class CartServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			String userId = (String) session.getAttribute("userId");
 			int productCode = Integer.parseInt(request.getParameter("productCode"));
+			int quantity = Integer.parseInt(request.getParameter("quantity"));
 
 			// カートに商品を追加
+			CartBean cartItem = new CartBean();
 			CartDAO cartDAO = new CartDAO();
-			int result = cartDAO.addCartItem(userId, productCode);
+			cartItem.setUserId(userId);
+			cartItem.setProductCode(productCode);
+			cartItem.setQuantity(quantity);
+			int result = cartDAO.addCartItem(cartItem);
 			System.out.println("商品が" + result + "件追加されました。");
 			response.sendRedirect("searchCategory");
 		} catch (SQLException | ClassNotFoundException e) {
