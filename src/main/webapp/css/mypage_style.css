@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-body {
+/*body {
 	background-color: #f8f8f8;
 	font-size: 16px;
 }
@@ -60,7 +60,7 @@ h1 {
 	background: linear-gradient(to bottom, #42a5f5, #2992f0);
 }
 
-/* 性別ラジオボタンのレイアウト調整 */
+ 性別ラジオボタンのレイアウト調整 
 .gender-group {
 	display: flex;
 	align-items: center;
@@ -72,7 +72,7 @@ h1 {
 	font-weight: normal;
 }
 
-/* 郵便番号入力欄と検索ボタンのレイアウト調整 */
+ 郵便番号入力欄と検索ボタンのレイアウト調整 
 .postal-code-group {
 	display: flex;
 	align-items: center;
@@ -104,7 +104,7 @@ postal-code-group .search-button {
     font-size: 16px;
 }
 
-/* 住所入力欄の調整 */
+ 住所入力欄の調整 
 .address-group {
     margin-bottom: 15px;
 }
@@ -115,7 +115,7 @@ postal-code-group .search-button {
     font-weight: bold;
 }
 
-/* 電話番号、メールアドレス、パスワードの調整 */
+ 電話番号、メールアドレス、パスワードの調整 
 .form-row label {
     display: block;
     margin-bottom: 5px;
@@ -146,4 +146,181 @@ postal-code-group .search-button {
 
 .back-link a:hover {
     text-decoration: underline;
+}*/
+
+
+body {
+    background-color: #f8f8f8;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* スタイリッシュなフォントに変更 */
+    line-height: 1.6;
+    color: #333;
+}
+
+.form-container {
+    width: 500px; /* 少し幅を広げる */
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #fff; /* 背景色を白に変更 */
+    border-radius: 12px; /* 角をより丸く */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 影を強く */
+    border: 1px solid #eee; /* 薄い境界線を追加 */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-row {
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-row input[type="text"],
+.form-row input[type="password"],
+.form-row input[type="date"],
+.form-row input[type="email"],
+.form-row input[type="tel"] {
+    width: calc(100% - 22px); /* 左右のpadding分を調整 */
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-row input[type="text"]:focus,
+.form-row input[type="password"]:focus,
+.form-row input[type="date"]:focus,
+.form-row input[type="email"]:focus,
+.form-row input[type="tel"]:focus {
+    border-color: #4CAF50; /* フォーカス時の色を変更 */
+    outline: none;
+}
+
+.update-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50; /* ボタンの色を変更 */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.update-button:hover {
+    background-color: #45a049; /* ホバー時の色を変更 */
+}
+
+/* 性別ラジオボタンのレイアウト調整 */
+.gender-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.gender-group label {
+    margin-left: 10px;
+    font-weight: normal;
+    color: #555;
+}
+
+/* 郵便番号入力欄と検索ボタンのレイアウト調整 */
+.postal-code-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.postal-code-group label {
+    width: 120px;
+    text-align: left;
+    margin-right: 10px;
+    color: #555;
+}
+
+.postal-code-group input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.postal-code-group .search-button {
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+postal-code-group .search-button:hover {
+    background-color: #e0e0e0;
+}
+
+/* 住所入力欄の調整 */
+.address-group {
+    margin-bottom: 20px;
+}
+
+.address-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+/* 電話番号、メールアドレス、パスワードの調整 */
+.form-row label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    text-align: left;
+    width: auto;
+    margin-right: 0;
+}
+
+.form-row {
+    margin-bottom: 20px;
+}
+
+.update-button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-link a {
+    color: #4CAF50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+    color: #45a049;
 }
