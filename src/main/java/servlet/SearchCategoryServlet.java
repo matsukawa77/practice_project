@@ -20,7 +20,7 @@ import model.entity.ProductBean;
 /**
  * Servlet implementation class SearchCategoryServlet
  */
-@WebServlet(urlPatterns = "/searchCategory", loadOnStartup = 1)
+@WebServlet("/searchCategory")
 public class SearchCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
