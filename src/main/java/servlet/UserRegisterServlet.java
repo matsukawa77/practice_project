@@ -51,7 +51,7 @@ public class UserRegisterServlet extends HttpServlet {
 		String postalCode = request.getParameter("postalCode");
 		String address = request.getParameter("address");
 		Date birthDay = Date.valueOf(request.getParameter("birthDay"));
-		int gender =  Integer.parseInt(request.getParameter("gender"));
+		int gender = Integer.parseInt(request.getParameter("gender"));
 		String phoneNumber = request.getParameter("phoneNumber");
 		String role = request.getParameter("role");
 
@@ -79,7 +79,7 @@ public class UserRegisterServlet extends HttpServlet {
 		}
 
 		if (result > 0) {
-
+			request.setAttribute("msg", "会員登録が完了しました。ログインできる");
 			response.sendRedirect("login.jsp");
 
 		} else {
