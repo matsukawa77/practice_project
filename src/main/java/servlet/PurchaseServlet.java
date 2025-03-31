@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.dao.CartDAO;
+import model.dao.ProductDAO;
 import model.entity.CartBean;
 
 /**
@@ -20,7 +21,8 @@ public class PurchaseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userId = (String) request.getSession().getAttribute("userId");
-
+        
+        
         if (userId == null || userId.isEmpty()) {
             request.setAttribute("errorMessage", "ログイン状態を確認してください。");
             request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -29,7 +31,7 @@ public class PurchaseServlet extends HttpServlet {
 
         try {
             CartDAO cartDAO = new CartDAO();
-            List<CartBean> cartList = cartDAO.getAllCartItem();
+            List<CartBean> cartList = cartDAO.getAllCartItem(userId);
 
             if (cartList == null || cartList.isEmpty()) {
                 request.setAttribute("errorMessage", "カートが空です。");
@@ -48,6 +50,16 @@ public class PurchaseServlet extends HttpServlet {
             System.out.println("ユーザーID: " + userId);
             System.out.println("合計金額: " + totalAmount + "円");
 
+            ProductDAO productdao = new ProductDAO();
+            CartDAO cartdao = new CartDAO();
+
+            for(CartBean cart : cartList) {
+            productdao.decrementStock(cart.getProductName());
+            }
+            
+            cartdao.deleteAllCartItem(userId);
+            
+            
             // 購入完了ページにリダイレクト
             response.sendRedirect("complete.jsp");
 

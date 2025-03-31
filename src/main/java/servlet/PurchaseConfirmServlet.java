@@ -50,7 +50,7 @@ public class PurchaseConfirmServlet extends HttpServlet {
             request.setAttribute("user", user);
 
             CartDAO cartDAO = new CartDAO();
-            List<CartBean> cartList = cartDAO.getAllCartItem();
+            List<CartBean> cartList = cartDAO.getAllCartItem(userId);
             request.setAttribute("cartList", cartList);
             request.getRequestDispatcher("confirmPurchase.jsp").forward(request, response);
         } catch (Exception e) {
@@ -95,7 +95,7 @@ public class PurchaseConfirmServlet extends HttpServlet {
                 request.setAttribute("user", user);
 
                 CartDAO cartDAO = new CartDAO();
-                List<CartBean> cartList = cartDAO.getAllCartItem();
+                List<CartBean> cartList = cartDAO.getAllCartItem(userId);
                 request.setAttribute("cartList", cartList);
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();

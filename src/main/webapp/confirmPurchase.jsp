@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" 
+	contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    import="java.util.List,model.entity.UserBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +15,10 @@
 
 <h1>購入者情報確認</h1>
 
+	<%=
+	UserBean user= (UserBean)request.getAttribute("user")
+	%>
+
 <!-- カートからこのページに遷移
 	情報はユーザーIDを元に入れる -->
 
@@ -24,12 +30,12 @@
 		
 		
 		<label for="userName">お名前：</label>
-		<input type="text" size="15" id="userName" name="userName" value="<%=user.getUserName()%>"required>
+		<input type="text" size="15" id="userName" name="Name" value="<%=user.getName()%>"required>
 		
 		<br>
 		
 		<label for="userNameKana">お名前(カナ)：</label>
-		<input type="text" size="15" id="userNameKana" name="userNameKana" value="<%=user.getUserNameKana()%>"required>
+		<input type="text" size="15" id="userNameKana" name="NameKana" value="<%=user.getNameKana()%>"required>
 		
 		<br> 
 		
