@@ -20,7 +20,7 @@ import model.entity.ProductBean;
 /**
  * Servlet implementation class SearchCategoryServlet
  */
-@WebServlet("/searchCategory")
+@WebServlet(urlPatterns = "/searchCategory", loadOnStartup = 1)
 public class SearchCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -49,9 +49,6 @@ public class SearchCategoryServlet extends HttpServlet {
 		List<CategoryBean> category = null;
 
 		try {
-//			String Session = "access";
-//			HttpSession session = request.getSession(true);
-//			session.setAttribute("Session", Session);
 			product = productdao.getAllProducts();
 			category = categorydao.getAllCategories();
 			request.setAttribute("product", product);

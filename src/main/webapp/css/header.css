@@ -1,2 +1,187 @@
-@charset "UTF-8";
+.header__background {
+	width: auto;
+	height: 80px;
+	display: flex;
+	align-items: center;
+	padding: 20px 50px;
+	background-color: #021F3B;
+	position: sticky;
+	top: 0;
+	z-index: 999;
+}
 
+.imageBox {
+	width: 150px;
+	height: 100%;
+}
+
+.header__image {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.header__button-before {
+	display: flex;
+	margin: auto;
+	margin-right: 0px;
+	align-items: center;
+}
+
+form {
+	position: relative;
+	/* 矢印の親要素 */
+}
+
+.header__form-login {
+	display: inline-block;
+}
+
+.header__form__button {
+	width: 120px;
+	padding: 0.5rem 3.5rem 0.5rem 2.5rem;
+	font-weight: bold;
+	background: #ffffff;
+	color: #021F3B;
+	border-radius: 100vh;
+	border: none;
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+.header__form__button:hover {
+	background: #DBE4EE;
+	color: #fff;
+}
+
+.arrow {
+	content: '';
+	position: absolute !important;
+	left: 10px;
+	width: 7px;
+	height: 7px;
+	border-top: 2px solid #021F3B;
+	border-right: 2px solid #021F3B;
+	top: 50% !important;
+	transform: translateY(-50%) rotate(45deg) !important;
+}
+
+.header__form-before {
+	margin: 0px 0px 0px 30px;
+	position: relative;
+	display: inline-block;
+}
+
+@media screen and (min-width:751px) {
+	.hamburgerMenu {
+		display: none;
+	}
+
+	.header__button-before {
+		display: flex;
+	}
+
+	.header__form-after {
+		margin: 0px 0px 0px 30px;
+	}
+}
+
+@media screen and (max-width:750px) {
+	.menu__content__pc {
+		display: none;
+	}
+
+	.header__form__button {
+		position: relative;
+		margin: 20px 0px;
+	}
+
+	.list__login-after {
+		margin-top: 150px;
+	}
+
+	.drawer__hidden {
+		display: none;
+	}
+
+	/* ハンバーガーアイコンの設置スペース */
+	.drawer__open {
+		display: flex;
+		height: 60px;
+		width: 60px;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		z-index: 100;
+		/* 重なり順を一番上にする */
+		cursor: pointer;
+	}
+
+	.drawer__open span::before {
+		top: -8px;
+		/* 上のバーの位置 */
+	}
+
+	.drawer__open span::after {
+		top: 8px;
+		/* 下のバーの位置 */
+	}
+
+	/* マイページ・ログアウトメニューのデザイン*/
+	.menu__content__sp {
+		width: 300px;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		right: -300px;
+		/* マイページ・ログアウトメニューを画面の外に飛ばす */
+		z-index: 99;
+		background: #021F3B;
+		transition: .5s;
+	}
+
+	/* アイコンがクリックされたらメニューを表示 */
+	#drawer_input:checked~.menu__content__sp {
+		right: 0;
+		/* マイページ・ログアウトメニューを画面に入れる */
+	}
+
+	/* アイコンがクリックされたら真ん中の線を透明にする */
+	#drawer_input:checked~.drawer__open span {
+		background: rgba(255, 255, 255, 0);
+	}
+
+	/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+	#drawer_input:checked~.drawer__open span::before {
+		bottom: 0;
+		transform: rotate(45deg);
+	}
+
+	#drawer_input:checked~.drawer__open span::after {
+		top: 0;
+		transform: rotate(-45deg);
+	}
+
+	/* ハンバーガーメニューのアイコン */
+	.drawer__open span {
+		position: relative;
+		/* ここを relative に */
+		display: block;
+		width: 25px;
+		height: 3px;
+		background: #ffffff;
+		border-radius: 3px;
+		transition: 0.5s;
+	}
+
+	.drawer__open span::before,
+	.drawer__open span::after {
+		content: '';
+		position: absolute;
+		width: 25px;
+		height: 3px;
+		background: #ffffff;
+		border-radius: 3px;
+		transition: 0.5s;
+	}
+}
