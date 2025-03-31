@@ -37,7 +37,6 @@ public class CartServlet extends HttpServlet {
 		// requestのエンコーディング方式を指定
 		request.setCharacterEncoding("UTF-8");
 		// requestパラメータ取得
-		String productCode = request.getParameter("productCode");
 
 		try {
 			HttpSession session = request.getSession();
@@ -45,7 +44,7 @@ public class CartServlet extends HttpServlet {
 			CartDAO cartDAO = new CartDAO();
 			List<CartBean> cartItemList;
 
-			cartItemList = cartDAO.getAllCartItem();
+			cartItemList = cartDAO.getAllCartItem(userId);
 
 			if (cartItemList != null) {
 				request.setAttribute("cartItemList", cartItemList);
@@ -53,7 +52,7 @@ public class CartServlet extends HttpServlet {
 			}
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-			request.getRequestDispatcher("index.jsp");
+			response.sendRedirect("searchCategory");
 		}
 	}
 
@@ -65,9 +64,6 @@ public class CartServlet extends HttpServlet {
 		// requestのエンコーディング方式を指定
 		request.setCharacterEncoding("UTF-8");
 
-		// 遷移先のパス
-		String path = "";
-
 		try {
 			// sessionスコープ、requestパラメータ値の取得
 			HttpSession session = request.getSession();
@@ -78,13 +74,12 @@ public class CartServlet extends HttpServlet {
 			CartDAO cartDAO = new CartDAO();
 			int result = cartDAO.addCartItem(userId, productCode);
 			System.out.println("商品が" + result + "件追加されました。");
-			path = "index.jsp";
+			response.sendRedirect("searchCategory");
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-			request.setAttribute("msg", "商品の追加に失敗しました。");
-			path = "error.jsp";
+			request.setAttribute("errorMassage", "商品の追加に失敗しました。");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }

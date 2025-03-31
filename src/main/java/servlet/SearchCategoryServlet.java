@@ -2,15 +2,19 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.dao.CategoryDAO;
 import model.dao.ProductDAO;
+import model.entity.CategoryBean;
 import model.entity.ProductBean;
 
 /**
@@ -37,21 +41,26 @@ public class SearchCategoryServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		response.getWriter().println("今ここ");
-		ProductDAO productdao = new ProductDAO();
-		List<ProductBean> product = null;
-		try {
-			System.out.println("今ここ２");
-			product = productdao.getAllProducts();
-			request.setAttribute("product", product);
 
+		ProductDAO productdao = new ProductDAO();
+		CategoryDAO categorydao = new CategoryDAO();
+
+		List<ProductBean> product = null;
+		List<CategoryBean> category = null;
+
+		try {
+//			String Session = "access";
+//			HttpSession session = request.getSession(true);
+//			session.setAttribute("Session", Session);
+			product = productdao.getAllProducts();
+			category = categorydao.getAllCategories();
+			request.setAttribute("product", product);
+			request.setAttribute("category", category);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -60,40 +69,34 @@ public class SearchCategoryServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		response.setContentType("text/html; charset=UTF-8");
-//		response.setCharacterEncoding("UTF-8");
-//		request.setCharacterEncoding("UTF-8");
-//
-//		CustomerBean customer = new CustomerBean();
-//		CustomerDAO dao = new CustomerDAO();
-//
-//		try {
-//			String keyword = request.getParameter("search");
-//			System.out.println(keyword);
-//			customer.setCustomerName(keyword);
-//			customer.setCustomerNameKana(keyword);
-//			customer.setPostalCode(keyword);
-//			customer.setAddress(keyword);
-//			customer.setAreaName(keyword);
-//			customer.setContactPersonName(keyword);
-//			customer.setContactPersonNameKana(keyword);
-//			customer.setContactPersonTel(keyword);
-//			customer.setUserName(keyword);
-//            //	検索する前に古いリストデータを削除し、HITしたリストのみを表示する		
-//			List<CustomerBean> customerList = new ArrayList<CustomerBean>();
-//			customerList.clear();
-//			customerList = dao.searchCustomer(customer);
-//			System.out.println("サーブレット" + customer.getCustomerName());
-//
-//			request.setAttribute("customerList", customerList);
-//
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("customerList.jsp");
-//			dispatcher.forward(request, response);
-//
-//		} catch (SQLException | ClassNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
+
+		CategoryDAO categorydao = new CategoryDAO();
+		ProductDAO productdao = new ProductDAO();
+		List<CategoryBean> category = null;
+
+		try {
+			String search = request.getParameter("search");
+
+			// 検索する前に古いリストデータを削除し、HITしたリストのみを表示する
+			List<ProductBean> productList = new ArrayList<ProductBean>();
+			productList.clear();
+			productList = productdao.getSortProduct(search);
+			category = categorydao.getAllCategories();
+			request.setAttribute("category", category);
+
+			request.setAttribute("product", productList);
+			request.setAttribute("selectedCategoryName", search);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			dispatcher.forward(request, response);
+
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

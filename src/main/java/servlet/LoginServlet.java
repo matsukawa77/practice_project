@@ -33,8 +33,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
 	/**
@@ -49,28 +48,27 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("password");
 		// インスタンス化
 		UserDAO dao = new UserDAO();
-		// 遷移先パス初期化
-		String path = "";
 
 		// user情報の取得、ログイン認証
 		try {
 			UserBean userInfo = dao.getUser(id);
 			if (dao.loginAuth(userInfo, pass)) {
 				// userId, role, auth情報をsessionに格納
+				int memberNum = userInfo.getMemberNum();
 				String role = userInfo.getRole();
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", id);
+				session.setAttribute("memberNum", memberNum);
 				session.setAttribute("role", role);
-				path = "index.jsp";
+				response.sendRedirect("searchCategory");
 			} else {
 				request.setAttribute("msg", "ユーザーIDまたはパスワードが違います");
-				path = "login.jsp";
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 			request.setAttribute("msg", "ログイン時にエラーが発生しました");
-			path = "login.jsp";
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher(path).forward(request, response);
 	}
 }

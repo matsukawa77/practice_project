@@ -23,7 +23,8 @@ public class ProductDAO {
 						  product_image,
 						  product_name,
 						  price,
-						  product_desc
+						  product_desc,
+						  stock
 						FROM
 						  m_product
 						""")) {
@@ -33,6 +34,7 @@ public class ProductDAO {
 				String name = res.getString("product_name");
 				int price = res.getInt("price");
 				String desc = res.getString("product_desc");
+				int stock = res.getInt("stock");
 
 				ProductBean product = new ProductBean();
 				product.setProductCode(code);
@@ -40,7 +42,9 @@ public class ProductDAO {
 				product.setProductName(name);
 				product.setPrice(price);
 				product.setProductDesc(desc);
+				product.setStock(stock);
 				productList.add(product);
+				
 
 			}
 
@@ -60,7 +64,8 @@ public class ProductDAO {
 					P.product_image,
 				    P.product_name,
 					P.price,
-					P.product_desc
+					P.product_desc,
+					P.stock
 				FROM
 				  	m_product P
 				JOIN
@@ -81,6 +86,7 @@ public class ProductDAO {
 				product.setProductName(res.getString("product_name"));
 				product.setPrice(res.getInt("price"));
 				product.setProductDesc(res.getString("product_desc"));
+				product.setStock(res.getInt("stock"));
 				productList.add(product);
 			}
 		} catch (SQLException e) {
@@ -92,7 +98,7 @@ public class ProductDAO {
 	}
 
 	//在庫を減らす アップデート
-	public int decrementStock(String productName) throws SQLException, ClassNotFoundException {
+	public int decrementStock(String productName, String userId) throws SQLException, ClassNotFoundException {
 		int count = 0;
 		String sql = """
 				UPDATE
@@ -103,10 +109,13 @@ public class ProductDAO {
 					P.stock = P.stock - C.quantity
 				WHERE
 					P.product_name = ?
+				AND
+					C.user_id = ?
 				""";
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, productName);
+			pstmt.setString(2, userId);
 			count = pstmt.executeUpdate();
 			return count;
 		} catch (SQLException e) {
