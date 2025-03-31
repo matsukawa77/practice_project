@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" herf="css/confirmPurchase.css">
+<title>購入確認</title>
+<link rel="stylesheet" href="css/confirmPurchase.css">
 </head>
 <body>
 
