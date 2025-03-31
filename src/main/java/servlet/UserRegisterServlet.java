@@ -83,7 +83,7 @@ public class UserRegisterServlet extends HttpServlet {
 			response.sendRedirect("login.jsp");
 
 		} else {
-
+			request.setAttribute("errorMessage", "なんか会員登録に失敗しました。");
 			response.sendRedirect("error.jsp");
 
 		}
