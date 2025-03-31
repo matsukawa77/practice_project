@@ -45,7 +45,7 @@
 						<input type="submit" value=" カート" class="header__form__button">
 						<span class="arrow"></span>
 					</form>
-					<form action="logout" method="get" class="header__form-before">
+					<form action="logout" method="post" class="header__form-before">
 						<input type="submit" value="ログアウト" class="header__form__button">
 						<span class="arrow"></span>
 					</form>
@@ -65,7 +65,7 @@
 							<input type="submit" value="カート" class="header__form__button">
 							<span class="arrow"></span>
 						</form>
-						<form action="logout" method="get" class="header__form-after">
+						<form action="logout" method="post" class="header__form-after">
 							<input type="submit" value="ログアウト" class="header__form__button">
 							<span class="arrow"></span>
 						</form>
