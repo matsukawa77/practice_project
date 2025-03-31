@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="styleshet" herf="css/confirmPurchase.css">
+<title>購入確認</title>
+<link rel="stylesheet" href="css/confirmPurchase.css">
 </head>
 <body>
 
@@ -15,37 +15,30 @@
 
 <h1>購入者情報確認</h1>
 
-	<%=
-	UserBean user= (UserBean)request.getAttribute("user")
+	<%
+	UserBean user= (UserBean)request.getAttribute("user");
 	%>
 
 <!-- カートからこのページに遷移
 	情報はユーザーIDを元に入れる -->
 
-	<form action="PurchaseServlet" method="POST">
+	<form action="Purchase" method="POST">
 	
 		<!-- こそこそ情報もらうやつ -->
 		
 		<input type="hidden" name="userId" value="<%=user.getUserId()%>">
 		
+
+		<p>お名前： <%=user.getName()%>"</p>
 		
-		<label for="userName">お名前：</label>
-		<input type="text" size="15" id="userName" name="Name" value="<%=user.getName()%>"required>
 		
-		<br>
+		<p>お名前(カナ)：<%=user.getNameKana()%>"</p>
 		
-		<label for="userNameKana">お名前(カナ)：</label>
-		<input type="text" size="15" id="userNameKana" name="NameKana" value="<%=user.getNameKana()%>"required>
 		
-		<br> 
+		<p>郵便番号：<%=user.getPostalCode()%>"</p>
 		
-		<label for="postalCode">郵便番号：</label>
-		<input type="text" size="15" id="postalCode" name="postalCode" value="<%=user.getPostalCode()%>" maxlength="8" placeholder="ハイフン有り"required>
 		
-		<br>
-		
-		<label for="address">住所：</label>
-		<input type="text" id="address" name="address" value="<%=user.getAddress()%>" required>
+		<p>住所：<%=user.getAddress()%>"</p>
 		
 
 <h2>お支払方法</h2>
@@ -58,7 +51,7 @@
 	<p>3営業日以内に出荷</p>
 
 	<!-- 更新ボタン -->
-		<input type="submit" class="btn-border" value="更新">
+		<input type="submit" class="btn-border" value="購入確定">
 					
 </form>
 </body>
