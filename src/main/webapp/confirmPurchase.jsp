@@ -22,7 +22,7 @@
 <!-- カートからこのページに遷移
 	情報はユーザーIDを元に入れる -->
 
-	<form action="PurchaseServlet" method="POST">
+	<form action="Purchase" method="POST">
 	
 		<!-- こそこそ情報もらうやつ -->
 		
