@@ -80,7 +80,7 @@ public class UserRegisterServlet extends HttpServlet {
 
 		if (result > 0) {
 
-			response.sendRedirect("complete.jsp");
+			response.sendRedirect("login.jsp");
 
 		} else {
 

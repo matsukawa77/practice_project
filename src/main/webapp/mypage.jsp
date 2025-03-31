@@ -11,7 +11,7 @@ UserBean user = (UserBean) request.getAttribute("user");
 <meta charset="UTF-8">
 <title>マイページ</title>
 
-<link rel="styleshet" herf="css/mypage_style.css">
+<link rel="styleshet" href="css/mypage_style.css">
 
 <script src="js/script.js"></script>
 </head>
@@ -28,7 +28,7 @@ UserBean user = (UserBean) request.getAttribute("user");
 		<form action="updateUser" method="post">
 			<div class="form-row">
 				<label for="name">お名前</label> 
-				 <input type="text" name="name" value="<%user != null ? user.getName() : ""%>" required>
+				 <input type="text" name="name" value="<%= user != null ? user.getName() : ""%>" required>
 			</div>
 
 			<div class="form-row">
@@ -57,7 +57,7 @@ UserBean user = (UserBean) request.getAttribute("user");
 	        
 	        <div class="form-row postal-code-group">
 		        <label for="postalCode">郵便番号：</label>
-		         <input type="text" id="postalCode" name="postalCode" value="<%= user != null ? user.getPostalCode() : "" %>" pattern="\\d{3}-?\\d{4}">
+		         <input type="text" id="postalCode" name="postalCode" value="<%= user != null ? user.getPostalCode() : "" %>" pattern="\d{3}-?\d{4}">
 		          <button type="button" class="search-button" onclick="searchPostalCode()">検索</button>
 	        </div>
 	
@@ -68,12 +68,12 @@ UserBean user = (UserBean) request.getAttribute("user");
 	        
 	        <div class="form-row">
 		        <label for="phoneNumber">電話番号：</label>
-		         <input type="text" id="phoneNumber" name="phoneNumber" value="<%= user != null ? user.getPhoneNumber() : "" %>" required pattern="\\d{2,4}-?\\d{2,4}-?\\d{3,4}">
+		         <input type="text" id="phoneNumber" name="phoneNumber" value="<%= user != null ? user.getPhoneNumber() : "" %>" required pattern="\d{2,4}-?\d{2,4}-?\d{3,4}">
 	        </div>
 	
 	        <div class="form-row">
 		         <label for="email">メールアドレス：</label>
-		          <input type="email" id="email" name="email" value="<%= user != null ? user.getMail() : "" %>" required placeholder="example@example.com">
+		          <input type="email" id="email" name="userId" value="<%= user != null ? user.getUserId() : "" %>" required placeholder="example@example.com">
 	        </div>
 	        
 	        <div class="form-row">

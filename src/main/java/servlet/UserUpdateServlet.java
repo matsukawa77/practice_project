@@ -57,6 +57,7 @@ public class UserUpdateServlet extends HttpServlet {
         String role = request.getParameter("role");
 
         UserBean user = new UserBean();
+        user.setMemberNum(memberNum);
         user.setUserId(userId);
         user.setPassword(password);
         user.setName(name);
