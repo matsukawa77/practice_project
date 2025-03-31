@@ -54,7 +54,7 @@ public class PurchaseServlet extends HttpServlet {
             CartDAO cartdao = new CartDAO();
 
             for(CartBean cart : cartList) {
-            productdao.decrementStock(cart.getProductName());
+            productdao.decrementStock(cart.getProductName(),userId);
             }
             
             cartdao.deleteAllCartItem(userId);
