@@ -51,7 +51,7 @@
 	<p>3営業日以内に出荷</p>
 
 	<!-- 更新ボタン -->
-		<input type="submit" class="btn-border" value="更新">
+		<input type="submit" class="btn-border" value="購入確定">
 					
 </form>
 </body>
