@@ -8,6 +8,15 @@ public class CartBean {
 	private int quantity;
 	private int price;
 	private int sumPrice;
+	private String productImage;
+
+	public String getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
+	}
 
 	public CartBean() {
 
