@@ -14,8 +14,8 @@
   text-align: center;
 }
 
-#login__id,
-#login__pass {
+.login__id,
+.login__pass {
   width: 250px;
 }
 
@@ -35,8 +35,27 @@ input[type="text"],
   box-sizing: border-box;
 }
 
-input[type="submit"],
-[type="reset"] {
+.submit {
+	width: 150px;
+  display: inline-block;
+  border-radius: 5%;
+  text-align: center;
+  cursor: pointer;
+  margin: 15px 20px 15px 20px;
+  background: skyblue;
+  color: gray;
+  transition: .3s;
+  box-shadow: 2px 2px 1px #666666;
+  border: 2px solid #99ccff;
+}
+
+.login__submit:hover {
+  box-shadow: none;
+  color: #99ccff;
+  background: #ffffff;
+}
+
+input[type="reset"] {
   width: 150px;
   display: inline-block;
   border-radius: 5%;
@@ -50,8 +69,7 @@ input[type="submit"],
   border: 2px solid #99ccff;
 }
 
-input[type="submit"]:hover,
-[type="reset"]:hover {
+input[type="reset"]:hover {
   box-shadow: none;
   color: #99ccff;
   background: #ffffff;
