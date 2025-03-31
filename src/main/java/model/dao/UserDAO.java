@@ -11,13 +11,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import model.entity.UserBean;
 
 public class UserDAO {
-	public UserBean getUser(String userId) throws SQLException, ClassCastException, ClassNotFoundException {
+	public UserBean getUser(String userId) throws SQLException, ClassNotFoundException {
 		// return用変数
 		UserBean user = new UserBean();
 		// SQL文
 		String sql = """
 				SELECT
-					mumber_num, user_id, password, name, name_kana, postal_code,
+					member_num, user_id, password, name, name_kana, postal_code,
 					address, birth_day, gender, phone_number, role
 				FROM
 					m_user
@@ -33,6 +33,7 @@ public class UserDAO {
 			// userIdが一致した場合
 			if (res.next()) {
 				// return用変数にDBから取得した値をセット
+				user.setMemberNum(res.getInt("member_num"));
 				user.setUserId(res.getString("user_id"));
 				user.setPassword(res.getString("password"));
 				user.setName(res.getString("name"));
