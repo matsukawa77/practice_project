@@ -19,10 +19,10 @@ import model.entity.UserBean;
  * Servlet implementation class PurchaseConfirm
  */
 @WebServlet("/PurchaseConfirm")
-public class PurchaseConfirm extends HttpServlet {
+public class PurchaseConfirmServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public PurchaseConfirm() {
+    public PurchaseConfirmServlet() {
         super();
     }
 
@@ -50,7 +50,7 @@ public class PurchaseConfirm extends HttpServlet {
             request.setAttribute("user", user);
 
             CartDAO cartDAO = new CartDAO();
-            List<CartBean> cartList = cartDAO.getAllCartItem();
+            List<CartBean> cartList = cartDAO.getAllCartItem(userId);
             request.setAttribute("cartList", cartList);
             request.getRequestDispatcher("confirmPurchase.jsp").forward(request, response);
         } catch (Exception e) {
@@ -95,7 +95,7 @@ public class PurchaseConfirm extends HttpServlet {
                 request.setAttribute("user", user);
 
                 CartDAO cartDAO = new CartDAO();
-                List<CartBean> cartList = cartDAO.getAllCartItem();
+                List<CartBean> cartList = cartDAO.getAllCartItem(userId);
                 request.setAttribute("cartList", cartList);
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();

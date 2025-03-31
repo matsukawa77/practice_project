@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+
+body{
+	text-align: center;
+	
+}
+
+.btn {
+
+    width: 250px;
+    padding: 15px;
+    border-radius: 30px;
+    background-color: #fffa3c;
+}
+
+.btn:hover {
+	background-color: 	#ffb760;
+}
+
+.container{
+	display: flexbox;
+	width: fit-content;
+	text-align: right;
+	line-height: 30px;
+	align-items: center;
+	justify-content: center;
+	margin:auto;
+}
+

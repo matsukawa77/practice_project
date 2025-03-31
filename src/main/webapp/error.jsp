@@ -5,16 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>エラー画面</title>
-<!-- CSSファイルはこの辺に入れる
-<link rel="stylesheet" href="ファイルの名前.css">
- -->
+<link rel="stylesheet" type="text/css" href="css/error.css">
 </head>
 <body>
 
 <%@ include file="header.jsp"%>
 
 <!-- 以下文はServletでerrorMessageの設定が必要
-もしいらなかったら消すだけ、作ってるうちに追々
 request.setAttribute("errorMessage", "エラーメッセージ内容");のやつ
  -->
  
@@ -25,12 +22,14 @@ request.setAttribute("errorMessage", "エラーメッセージ内容");のやつ
 	String errorMessage = (String) request.getAttribute("errorMessage");
 	if (errorMessage != null) {
 	%>
-	<p><%=errorMessage%></p>
+	<div class="error"><p><%=errorMessage%></p></div>
 	<%
 	}
 	%>
 
-<a href="index.jsp">商品一覧画面へ</a>
+<!-- 一旦リンク先を商品一覧からサーチカテゴリに変更 -->
+
+<a href="searchCategory.jsp">商品一覧画面へ</a>
 
 </body>
 </html>

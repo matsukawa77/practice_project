@@ -107,7 +107,7 @@ public class UserDAO {
 					m_user
 				SET
 					user_id = ?, password = ?, name = ?, name_kana = ?, postal_code = ?,
-					adress = ?, birth_day = ?, gender = ?, phone_number = ?)
+					address = ?, birth_day = ?, gender = ?, phone_number = ?)
 				WHERE
 					member_num = ?;
 				""";
