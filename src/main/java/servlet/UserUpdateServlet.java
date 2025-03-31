@@ -77,7 +77,7 @@ public class UserUpdateServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-        response.sendRedirect("mypage.jsp");
+        response.sendRedirect("myPage");
     }
 }
 
