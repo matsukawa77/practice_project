@@ -79,6 +79,6 @@ public class UserUpdateServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("msg", "ユーザー情報の更新が完了しました。");
-		response.sendRedirect("myPage");
+		request.getRequestDispatcher("myPage").forward(request, response);
 	}
 }
