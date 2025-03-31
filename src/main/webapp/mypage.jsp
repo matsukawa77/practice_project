@@ -39,13 +39,13 @@ UserBean user = (UserBean) request.getAttribute("user");
 			<div class="form-group">
 				<label>性別</label>
 				<div class="gender-group">
-				 <input type="radio" name="gender" value="1" <%= user != null && user.getGender() == '1' ? "checked" : "" %>>
+				 <input type="radio" name="gender" value="1" <%= user != null && user.getGender() == 1 ? "checked" : "" %>>
 				<label for="male">男性</label> 
 				  
-				 <input type="radio" name="gender" value="2" <%= user != null && user.getGender() == '2' ? "checked" : "" %>>
+				 <input type="radio" name="gender" value="2" <%= user != null && user.getGender() == 2 ? "checked" : "" %>>
 				<label for="female">女性</label> 
 				
-				 <input type="radio" name="gender" value="0" <%= user != null && user.getGender() == '0' ? "checked" : "" %>>
+				 <input type="radio" name="gender" value="0" <%= user != null && user.getGender() == 0 ? "checked" : "" %>>
 				<label for="unknown">不明</label>
 			    </div>
 			</div>
